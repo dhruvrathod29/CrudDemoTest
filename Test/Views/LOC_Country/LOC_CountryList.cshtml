@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "LOC_CountryList";
+}
+
+@using System.Data
+@model DataTable
+
+<h1>LOC_CountryList</h1>
+
+<p>
+    <a asp-action ="Add" asp-controller="LOC_Country">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               CountryID
+            </th>
+            <th>
+                CountryCode
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (DataRow dr in Model.Rows) {
+        <tr>
+          
+            <td>
+                    @dr["CountryName"]
+            </td>
+
+                <td>
+                    <a class="btn btn-success" asp-controller="LOC_Country" asp-action="Add" asp-route-CountryID="@Convert.ToInt32(dr["CountryID"])"><i class="fa-solid fa-pen-to-square" style="color:black"></i>Edit</a>
+                    <a class="btn btn-danger" asp-controller="LOC_Country" asp-action="Delete" asp-route-CountryID="@Convert.ToInt32(dr["CountryID"])"><i class="fa-solid fa-trash" style="color:black"></i>Delete</a>
+                </td>
+           
+           
+        </tr>
+}
+    </tbody>
+</table>
